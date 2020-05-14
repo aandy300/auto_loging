@@ -8,3 +8,6 @@
 
 20200217_v1_finsih
 +讀取執行檔
+
+20200514_v2
++ add gmail, yahoo login
