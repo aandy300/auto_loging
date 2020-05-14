@@ -11,4 +11,4 @@
 
 20200514_v2
 + add gmail, yahoo login
-+ git stree更改測試
++ git stree更改測試2
