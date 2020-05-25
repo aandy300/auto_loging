@@ -53,7 +53,7 @@ def gmail_slect_character():
     # ms.click(767, 988, clicks=2,button='left', interval=0.1)
     ms.click(p, clicks=2,button='left', interval=0.1)
     print('等地圖', p)
-    time.sleep(wait_sec) # wait map load
+    time.sleep(15) # wait map load
     press_f()
     print('換角', p)
     ms.click(11, 13, clicks=1,button='left', interval=0.1)
