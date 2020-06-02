@@ -26,9 +26,11 @@ def open_gamebat():
 
 def yahoo_slect_character():
     postion_arrow = 1330, 992
-    psotion_slot1 = 847, 992
+    psotion_slot1 = 1149, 997
     # 1330 992 = >
     # 698 981 = 最右邊後第一個格子
+    # 847, 992 = 倒數第五個格子?
+    # 1149, 997 = 倒數第二個格子
     ms.click(postion_arrow, clicks=1,button='left', interval=0.1)
     time.sleep(1)
     ms.click(postion_arrow, clicks=1,button='left', interval=0.1)
@@ -62,7 +64,7 @@ def closegame():
 def main():
     open_gamebat()
     a = 0
-    while a < 11 :
+    while a < 14 :
         print('第',a ,'次迴圈')
         yahoo_slect_character()
         a = a +1
