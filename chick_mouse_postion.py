@@ -10,14 +10,8 @@ z = int
 print(x, y)
 
 def on_press(key):
-    if key == keyboard.Key.f12: # 中止
+    if key == keyboard.Key.f12: # 中止 F12
         return False
-    elif key == keyboard.Key.f3: # 點擊指定位置
-        click_postion()
-    elif key == keyboard.Key.f5: # 連點
-        ms.click()
-    elif key == keyboard.Key.f4: # 連點
-        terb_chick()
     elif key == keyboard.Key.f1: # 監測位置 #會BUG進 迴圈出不來
         global x, y
         global mspoint
@@ -29,6 +23,12 @@ def on_press(key):
     elif key == keyboard.Key.f2: #儲存監測位置
         x, y = ms.position()
         print(x, y)
+    elif key == keyboard.Key.f3: # 點擊指定位置 candy F3
+        click_postion()
+    elif key == keyboard.Key.f5: # 連點 F5
+        ms.click()
+    elif key == keyboard.Key.f4: # 連點 treb F4
+        terb_chick()
 def terb_chick():
     global x,y
 

@@ -25,6 +25,7 @@ def open_gamebat():
 def gmail_slect_character():
     global x
     global y
+    global wait_sec
     postion_solot0 = 767, 988
     postion_solot1 = 863, 988
     postion_solot2 = 962, 988
