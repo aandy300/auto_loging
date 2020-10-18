@@ -12,3 +12,12 @@
 20200514_v2
 + add gmail, yahoo login
 + git stree更改測試2
+
+20201018
++ 拆解功能追加-複數拆解
+
++ 想做的
++ 糖果+treb, All_loging, 擠頻道, 分解追加array
+
+#  tip
+test.py vscode 會預設先跑他
