@@ -24,6 +24,7 @@
 # 特定次數發動黃拆 
 # 最後拉全部物品堆疊
 # log回報整理
+#2020-10-31 按鍵位置更改, 回傳倉庫按鍵位置 直接點擊
 import time ,sys
 import pyautogui as ms
 from pynput import keyboard
@@ -39,15 +40,14 @@ tool2_point = int,int # 拆解器2位置
 tool2_point_gb = int, int # 拆解器2位置gb
 sl_item_postion = int, int #要拆的位置
 sl_item_postion_useall = int, int #要拆的位置 useall
-option_postion = int, int # 齒輪位置
-option_postion_deposit = int, int # 齒輪選項
+return_to_bank_postion = int, int # 回傳材料倉庫按鈕位置
 wait_sl_item_postion = [] # 等待要拆解的物品位置
 salvage_count = int # 拆解次數計數
 first_time = True # 第一次 -開關
 chick_ok = False #偵錯用
 z = int
 
-# F2分解器位置 > F3要拆的道具位置s > F4齒輪位置 > F5 開始
+# F2分解器位置 > F3要拆的道具位置s > F4回傳材料倉庫按鈕位置 > F5 開始
 # 主要控制區
 def on_press(key):
     global first_time, tool_point, tool_point_gb, tool2_point, tool2_point_gb
@@ -57,8 +57,8 @@ def on_press(key):
         chick_salvage_tool_postion()
     elif key == keyboard.Key.f3: #等待要拆的物品位置s
         add_wait_salvage_item_postion()
-    elif key == keyboard.Key.f4: #齒輪的位置
-        chick_option_postion()
+    elif key == keyboard.Key.f4: #回傳材料倉庫按鈕位置
+        return_to_bank_button_postion()
     elif key == keyboard.Key.f5: #拆解
         #拆
         salvage()
@@ -106,13 +106,11 @@ def add_wait_salvage_item_postion():
     print("最後加入的一筆座標: ", wait_sl_item_postion[len(wait_sl_item_postion) -1])
     # return sl_item_postion
 
-# F4 齒輪的位置
-def chick_option_postion():
-    global option_postion, option_postion_deposit
-    x,y = ms.position()
-    option_postion = ms.position()
-    option_postion_deposit = ms.position(x=x+0,y=y+20)
-    print("齒輪的位置", option_postion_deposit)
+# F4 回傳倉庫按鍵位置
+def return_to_bank_button_postion():
+    global return_to_bank_postion
+    return_to_bank_postion = ms.position()
+    print("倉庫回傳按鈕位置: ", return_to_bank_postion)
 
 #F5 拆解 
 # 先拉進來 > 拆個4次 > 黃拆 > 回傳 > 在拉 
@@ -142,13 +140,14 @@ def salvage():
                 time.sleep(1)
                 take_all()
                 time.sleep(2)
+    print("salvage() end.")
 
 
 # 功能性以下
 
 #防呆偵錯
 def try_all_postion():
-    global tool_point, tool_point_gb, tool2_point, tool2_point_gb, sl_item_postion, option_postion, chick_ok
+    global tool_point, tool_point_gb, tool2_point, tool2_point_gb, sl_item_postion, return_to_bank_postion, chick_ok
     print("防呆偵錯ing...")
     for _ in range(1):
         try:
@@ -157,14 +156,14 @@ def try_all_postion():
             ms.click(tool2_point, clicks=1,button='left', interval=0.1)
             ms.click(tool2_point_gb, clicks=1,button='left', interval=0.1)
             ms.click(sl_item_postion, clicks=1,button='left', interval=0.1)
-            ms.click(option_postion, clicks=1,button='left', interval=0.1)
+            ms.click(return_to_bank_postion, clicks=1,button='left', interval=0.1)
             len(wait_sl_item_postion) < 0
             chick_ok = True
             print("要使用的位置皆已儲存,可以執行分解")
         except Exception as e:
             print(e)
             print("有尚未定位的位置_請在確認!!")
-            print("tool_point位置:", tool_point, "tool_point位置_gb:", tool_point_gb, "tool2_point位置:", tool2_point, "tool2_point_gb位置:", tool2_point_gb, "sl_item_postion:", sl_item_postion, "option_postion:", option_postion)
+            print("tool_point位置:", tool_point, "tool_point位置_gb:", tool_point_gb, "tool2_point位置:", tool2_point, "tool2_point_gb位置:", tool2_point_gb, "sl_item_postion:", sl_item_postion, "option_postion:", return_to_bank_postion)
         break
 
 #測 是否第一次 如第一次拆10個
@@ -178,7 +177,7 @@ def test_frist_tiem():
             i += 1
             if len(wait_sl_item_postion) == 0 :
                 print("沒有設定要拆的物品, 使用F3加入要拆的物品")
-            ms.click(wait_sl_item_postion[0], clicks=2,button='left', interval=0.2)
+            ms.click(sl_item_postion, clicks=2,button='left', interval=0.2)
             
         print("第一次拆解,單點十個道具結束")
 
@@ -201,13 +200,11 @@ def open_all_item():
     ms.click(sl_item_postion_useall, clicks=1,button='left', interval=0.2)
     time.sleep(5)
 
-#回傳
+#回傳材料至倉庫
 def item_to_bank():
-    global option_postion, option_postion_deposit
+    global return_to_bank_postion
     #點
-    ms.click(option_postion, clicks=1,button='left', interval=0.2)
-    #傳
-    ms.click(option_postion_deposit, clicks=1,button='left', interval=0.2)
+    ms.click(return_to_bank_postion, clicks=1,button='left', interval=0.2)
     print("item_to_bank()_end")
 
 #拆所有 全部座標
