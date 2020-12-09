@@ -25,5 +25,7 @@ Auto
     - 多線程 測試ing
     - 簡潔化(部分)
 
+### 想做的
+
 ###  tip
 - test.py vscode 會預設先跑他
