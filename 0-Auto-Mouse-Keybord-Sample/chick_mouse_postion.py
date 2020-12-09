@@ -1,8 +1,10 @@
+# 糖果+treb
+
 import time ,sys
 import pyautogui as ms #https://pyautogui.readthedocs.io/en/latest/mouse.html
 from pynput import keyboard
 
-
+# F1 儲存 F3 連點 F4 投石
 
 x, y = int, int
 mspoint = int,int
@@ -25,10 +27,11 @@ def on_press(key):
         print(x, y)
     elif key == keyboard.Key.f3: # 點擊指定位置 candy F3
         click_postion()
-    elif key == keyboard.Key.f5: # 連點 F5
-        ms.click()
     elif key == keyboard.Key.f4: # 連點 treb F4
         terb_chick()
+    elif key == keyboard.Key.f5: # 連點 F5
+        ms.click()
+
 def terb_chick():
     global x,y
 
@@ -40,7 +43,7 @@ def terb_chick():
         ms.mouseDown(button='left',x=x,y=y)
         time.sleep(9)
         ms.mouseUp()
-        time.sleep(5)
+        time.sleep(109)
         
 
 

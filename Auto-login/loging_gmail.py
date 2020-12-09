@@ -3,12 +3,28 @@ import pyautogui as ms # 滑鼠點擊用
 from pynput import keyboard 
 from pynput.keyboard import Key, Controller
 
+# 180s
+
+# 多線程 測試 
+# 需要停止其他線程方法 
+# https://medium.com/jeasee%E9%9A%A8%E7%AD%86/python-%E5%A4%9A%E7%B7%9A%E7%A8%8B-eb36272e604b
+import threading, time
+
 keyboard = Controller()
 
-global x 
-global y
-x = 0
-y = 0
+global count, first_time_check
+first_time_check = 0
+count = 1
+
+### 新增的
+def two_job():
+    print('thread %s is running...' % threading.current_thread().name)
+    i =0
+    while True:
+        i += 1
+        print("我是第二個程式：", i)
+        time.sleep(0.5)
+### 新增的結束
 
 # 讀取
 def open_gamebat():
@@ -23,29 +39,30 @@ def open_gamebat():
     print('gamebat_loging_end')
 
 def gmail_slect_character():
-    global x
-    global y
-    global wait_sec
-    postion_solot0 = 767, 988
-    postion_solot1 = 863, 988
-    postion_solot2 = 962, 988
-    postion_solot3 = 1060, 988
-    postion_solot4 = 1160, 988
-    
-    print(x, '上')
+    global wait_sec, count, first_time_check
 
-    if x == 0 :
-        p = postion_solot0
-    elif x == 1 :
-        p = postion_solot1
-    elif x == 2 :
-        p = postion_solot2
-    elif x == 3 :
-        p = postion_solot3
-    elif x == 4 :
-        p = postion_solot4
+    postion_solot1 = 767, 1000
+    postion_solot2 = 863, 1000
+    postion_solot3 = 962, 1000
+    postion_solot4 = 1060, 1000
+    postion_solot5 = 1160, 1000
     
-    if y == 0 :
+    print('in 選角色 第:', count, '次')
+
+    if count == 1 :
+        p = postion_solot1
+    elif count == 2 :
+        p = postion_solot2
+    elif count == 3 :
+        p = postion_solot3
+    elif count == 4 :
+        p = postion_solot4
+    elif count == 5 :
+        p = postion_solot5
+    
+    # 想用bool反轉
+    # 但python沒辦法直接 !bool? 解: https://stackoverflow.com/questions/8335029/is-there-a-way-to-negate-a-boolean-returned-to-variable
+    if first_time_check == 0 :
         wait_sec = 30
     else :
         wait_sec = 20
@@ -65,13 +82,13 @@ def gmail_slect_character():
     ms.click(966, 595, clicks=1,button='left', interval=0.1)
     time.sleep(2)
     
-    x = x + 1
-    y = y + 1
-    print(x, '下')
+    first_time_check+=1
     
+    # 點F
 def press_f():
     ms.click(1307, 748, clicks=2,button='left', interval=0.1)
 
+    # 關遊戲
 def closegame():
     ms.click(11, 13, clicks=1,button='left', interval=0.1)
     time.sleep(2)
@@ -79,13 +96,27 @@ def closegame():
     time.sleep(2)
 
 def main():
+    global count
+
+    # 新增的
+    t = threading.Thread(target = two_job)
+    t.start()
+    print('thread %s is running...' % threading.current_thread().name)
+    # 新增的 結束
+    
     open_gamebat()
-    a = 0
-    while a < 4 :
+
+    while count < 6 :
         gmail_slect_character()
-        a = a +1
+        count+= 1
     print('迴圈結束')
     print('結束遊戲')
     closegame()
+
+    # 新增的
+    t.join()
+    print('thread %s is running...' % threading.current_thread().name)
+    print("Done.")
+    # 新增的結束
 
 main()

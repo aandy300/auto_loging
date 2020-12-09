@@ -47,7 +47,7 @@ first_time = True # 第一次 -開關
 chick_ok = False #偵錯用
 z = int
 
-# F2分解器位置 > F3要拆的道具位置s > F4回傳材料倉庫按鈕位置 > F5 開始
+# F2分解器位置 > F3要拆的道具位置(複數s) > F4回傳材料倉庫按鈕位置 > F5 開始
 # 主要控制區
 def on_press(key):
     global first_time, tool_point, tool_point_gb, tool2_point, tool2_point_gb

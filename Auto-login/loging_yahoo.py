@@ -5,6 +5,8 @@ from pynput.keyboard import Key, Controller
 
 keyboard = Controller()
 
+# 7m30s
+
 global x 
 global y
 x = 0
@@ -29,8 +31,13 @@ def yahoo_slect_character():
     psotion_slot1 = 1149, 997
     # 1330 992 = >
     # 698 981 = 最右邊後第一個格子
-    # 847, 992 = 倒數第五個格子?
     # 1149, 997 = 倒數第二個格子
+    # 1052, 997 = 倒數第三個格子
+    # 962, 997 = 倒數第四個格子
+    # 862, 997 = 倒數第五個格子
+    # 769, 997 = 倒數第六個格子
+    # 676, 997 = 倒數第七個格子
+    
     ms.click(postion_arrow, clicks=1,button='left', interval=0.1)
     time.sleep(1)
     ms.click(postion_arrow, clicks=1,button='left', interval=0.1)
@@ -64,7 +71,7 @@ def closegame():
 def main():
     open_gamebat()
     a = 0
-    while a < 14 :
+    while a < 15 :
         print('第',a ,'次迴圈')
         yahoo_slect_character()
         a = a +1
