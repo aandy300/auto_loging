@@ -30,12 +30,12 @@ def two_job():
 def open_gamebat():
     print('gamebat_loging_star')
     acrobatPath = "C:\\Users\\admin\\Desktop\\game_Gmail.bat" 
-    os.startfile(acrobatPath)
+    os.startfile(acrobatPath) # 開啟檔案 bat
     print('gamebat_loging_star_wait20s_updata')
     time.sleep(20) # 20s 無更新 讀取置loging Button
-    ms.click(679, 665, clicks=1,button='left', interval=0.1)
+    ms.click(660, 670, clicks=1,button='left', interval=0.1) #REMIND ME LATER按鈕
     print('gamebat_loging_star_wait5s_gamestar')
-    time.sleep(35) # 等讀取到 角色選取畫面
+    time.sleep(35) # 等讀取到 角色選取畫面 #等自動登入
     print('gamebat_loging_end')
 
 def gmail_slect_character():

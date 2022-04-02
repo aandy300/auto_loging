@@ -141,6 +141,7 @@ def salvage():
                 take_all()
                 time.sleep(2)
     print("salvage() end.")
+    return
 
 
 # 功能性以下
