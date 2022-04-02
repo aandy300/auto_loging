@@ -27,33 +27,26 @@ def open_gamebat():
     time.sleep(35) # 等讀取到 角色選取畫面
     print('gamebat_loging_end')
 
-# 改成外面傳入位置訊息 在外面 for做增加100橫向軸 來更改位置資訊
+# 改成使用 x軸 +100 處理選角色
 def yahoo_slect_character():
-    postion_x = 200
-    postion_y = 992
+    postion_x = 200 #開始的位置 設置初始值
+    postion_y = 992 #開始的位置 設置初始值
     position_xy = postion_x, postion_y
     a = 0
-    print('外面', a)
 
     while a < 15 :
         print('第',a ,'次迴圈')
         print('點選角色', position_xy)
         ms.click(position_xy, clicks=2,button='left', interval=0.1) #點角色格
         ms.click(position_xy, clicks=2,button='left', interval=0.1) #點角色格
-        time.sleep(15) #等地圖
+        print('等地圖', position_xy)
+        time.sleep(16) #等地圖
         postion_x = postion_x + 100
         position_xy = postion_x, postion_y
-        print('數值調整', 'xy: ', position_xy, 'x:', postion_x, 'y', postion_y)
-        #f
-        press_f() 
-        logout()
+        print('數值調整+轉存', 'xy: ', position_xy, 'x:', postion_x, 'y', postion_y)
+        press_f() #f
+        logout() #登出換角
         a = a +1
-    
-    # time.sleep(16) #等地圖讀取
-    # time.sleep(16) #等地圖讀取
-
-
-    
 
 def logout():
     # 換角開始
@@ -68,6 +61,7 @@ def logout():
     # 換角結束
      
 def press_f():
+    print('press f')
     ms.click(1307, 748, clicks=2,button='left', interval=0.1)
 
 def closegame():
@@ -77,7 +71,7 @@ def closegame():
     time.sleep(2)
 
 def main():
-    # open_gamebat()
+    open_gamebat()
     yahoo_slect_character()
     print('迴圈結束')
     print('結束遊戲') 
