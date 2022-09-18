@@ -17,7 +17,8 @@ y = 0
 def open_gamebat():
     print('gamebat_loging_star')
     # bat地址
-    acrobatPath = "C:\\Users\\admin\\Desktop\\game_Yahoo.bat" 
+    # acrobatPath = "C:\\Users\\admin\\Desktop\\game_Yahoo.bat" 
+    acrobatPath = "C:\\Users\\admin\\Desktop\\game_Yahoo_nocopy.bat"     
     # 跑bat
     os.startfile(acrobatPath)
     print('gamebat_loging_star_wait20s_updata')
@@ -32,10 +33,10 @@ def yahoo_slect_character():
     postion_x = 200 #開始的位置 設置初始值
     postion_y = 992 #開始的位置 設置初始值
     position_xy = postion_x, postion_y
-    a = 0
+    count = 0
 
-    while a < 15 :
-        print('第',a ,'次迴圈')
+    while count < 16 :
+        print('第',count ,'次迴圈')
         print('點選角色', position_xy)
         ms.click(position_xy, clicks=2,button='left', interval=0.1) #點角色格
         ms.click(position_xy, clicks=2,button='left', interval=0.1) #點角色格
@@ -46,7 +47,7 @@ def yahoo_slect_character():
         print('數值調整+轉存', 'xy: ', position_xy, 'x:', postion_x, 'y', postion_y)
         press_f() #f
         logout() #登出換角
-        a = a +1
+        count = count +1
 
 def logout():
     # 換角開始
