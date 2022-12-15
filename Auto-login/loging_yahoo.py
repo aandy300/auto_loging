@@ -35,19 +35,19 @@ def yahoo_slect_character():
     position_xy = postion_x, postion_y
     count = 0
 
-    while count < 16 :
+    while count < 17 :
         print('第',count ,'次迴圈')
         print('點選角色', position_xy)
         ms.click(position_xy, clicks=2,button='left', interval=0.1) #點角色格
         ms.click(position_xy, clicks=2,button='left', interval=0.1) #點角色格
         print('等地圖', position_xy)
         time.sleep(16) #等地圖
-        postion_x = postion_x + 100
+        postion_x = postion_x + 95
         position_xy = postion_x, postion_y
         print('數值調整+轉存', 'xy: ', position_xy, 'x:', postion_x, 'y', postion_y)
         press_f() #f
         logout() #登出換角
-        count = count +1
+        count =count +1
 
 def logout():
     # 換角開始
