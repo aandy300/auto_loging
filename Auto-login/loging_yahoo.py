@@ -17,8 +17,8 @@ y = 0
 def open_gamebat():
     print('gamebat_loging_star')
     # bat地址
-    # acrobatPath = "C:\\Users\\admin\\Desktop\\game_Yahoo.bat" 
-    acrobatPath = "C:\\Users\\admin\\Desktop\\game_Yahoo_nocopy.bat"     
+    acrobatPath = "C:\\Users\\admin\\Desktop\\game_Yahoo.bat" 
+    # acrobatPath = "C:\\Users\\admin\\Desktop\\game_Yahoo_nocopy.bat"     
     # 跑bat
     os.startfile(acrobatPath)
     print('gamebat_loging_star_wait20s_updata')
